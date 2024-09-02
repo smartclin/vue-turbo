@@ -1,0 +1,37 @@
+{
+  "name": "nuxt-app",
+  "version": "0.0.0",
+  "scripts": {
+    "test:unit": "vitest --environment jsdom",
+    "prepare": "dotenv -e ../../.env -- nuxi prepare",
+    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 dotenv -e ../../.env -- nuxi dev",
+    "build": "dotenv -e ../../.env -- nuxi build",
+    "start": "dotenv -e ../../.env -- node .output/server/index.mjs",
+    "lint": "eslint .",
+    "typecheck": "dotenv -e ../../.env -- nuxi typecheck",
+    "test:e2e": "dotenv -e ../../.env -- playwright test --project=chromium",
+    "test:e2e:ui": "dotenv -e ../../.env -- playwright test --ui"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "1.4.1",
+    "@pinia/nuxt": "0.5.4",
+    "@playwright/test": "1.46.1",
+    "@unocss/nuxt": "0.62.3",
+    "@vitest/ui": "2.0.5",
+    "@vue/test-utils": "2.4.6",
+    "css-preset": "workspace:*",
+    "nuxt": "3.13.0",
+    "pinia": "2.2.2",
+    "pinia-store": "workspace:*",
+    "sass": "1.77.8",
+    "sass-loader": "16.0.1",
+    "tsconfig": "workspace:*",
+    "typescript": "5.5.4",
+    "ui": "workspace:*",
+    "vite": "5.4.2",
+    "vitest": "2.0.5",
+    "vue": "3.4.38",
+    "vue-toastification": "2.0.0-rc.5",
+    "webpack": "5.94.0"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "name": "monorepo-vue-starter",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.9.0",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=8"
+  },
+  "scripts": {
+    "build": "dotenv -- turbo run build",
+    "dev": "dotenv -- turbo run dev --parallel",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "eslint .",
+    "lint:turborepo": "turbo run lint",
+    "lint:config:viewer": "eslint-flat-config-viewer",
+    "lint:monorepo": "pnpm sherif",
+    "preinstall": "npx only-allow pnpm",
+    "release": "tsx scripts/release.ts",
+    "prepare": "simple-git-hooks",
+    "start:apps": "turbo run start --parallel --filter='./apps/*'",
+    "start:nuxt-app": "dotenv -- turbo run start --filter nuxt-app",
+    "start:storybook": "turbo run start --filter storybook",
+    "start:vite-app": "turbo run start --filter vite-app",
+    "start": "turbo run start --parallel",
+    "test:e2e:ui": "dotenv -e ./.env.e2e -- turbo run test:e2e:ui",
+    "test:e2e": "dotenv -e ./.env.e2e -- turbo run test:e2e",
+    "test:storybook": "pnpm -r test-storybook",
+    "test:watch:ui": "vitest --ui",
+    "test:watch": "vitest",
+    "test": "vitest run",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "3.0.0",
+    "@types/prompts": "2.4.9",
+    "@types/semver": "7.5.8",
+    "@unocss/eslint-config": "0.62.3",
+    "dotenv-cli": "7.4.2",
+    "eslint": "9.9.1",
+    "eslint-config-custom": "link:packages/eslint-config-custom",
+    "eslint-flat-config-viewer": "0.1.20",
+    "execa": "9.3.1",
+    "picocolors": "1.0.1",
+    "prettier": "3.3.3",
+    "prompts": "2.4.2",
+    "semver": "7.6.3",
+    "sherif": "0.11.0",
+    "simple-git-hooks": "2.11.1",
+    "tsx": "4.19.0",
+    "turbo": "2.1.1",
+    "typescript": "5.5.4",
+    "vitest": "2.0.5"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@types/react"
+      ],
+      "allowedVersions": {
+        "vite": "4"
+      }
+    }
+  },
+  "simple-git-hooks": {
+    "pre-push": "pnpm lint",
+    "commit-msg": "pnpm exec tsx scripts/verifyCommit.ts $1"
+  }
+}
